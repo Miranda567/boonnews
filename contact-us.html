@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Boon News</title>
+    <link rel="stylesheet" href="stles.css">
+    <style>
+        /* CSS for the contact form */
+        .contact-form-container {
+            max-width: 300px;
+            width: 100%;
+          
+            padding: 20px;
+            background-color: transparent;
+            border-radius: 8px;
+            
+        }
+        
+        .contact-form h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .contact-form label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+          
+            padding: 15px 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            max-width: 200px;
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .contact-info {
+            text-align: left;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .contact-info a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="index.html">Boon News</a></h1>
+        <button class="toggle-btn" onclick="toggleNav()">☰</button>
+    </header>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">&times;</a>
+<a href="index.html">Home</a>
+    <a href="sports.html">Sports</a>
+    <a href="politics.html">Politics</a>
+    <a href="education.html">Education</a>
+    <a href="business.html">Business</a>
+    <a href="religion.html">Religion</a>
+    <a href="advertisement.html">Advertise with us</a>
+    <a href="contact-us.html">Contact us</a>
+    
+    </div>
+
+    <main>
+      
+        <div class="contact-form-container">
+            <h2>Contact Us</h2>
+            <form class="contact-form" action="submit_form.php" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+
+            <div class="contact-info">
+                <p>Email us at: <a href="mailto:boonnews@gmail.com">boonnews@gmail.com</a></p>
+                <p>Follow us on social media:</p>
+                <a href="#">Facebook</a> | 
+                <a href="#">Twitter</a> | 
+                <a href="#">Instagram</a> | 
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="advertisement.html">Advertise with Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-social">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+        </div>
+
+        <div class="footer-bottom">
+            &copy; 2024 Boon News. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            var sidenav = document.getElementById("mySidenav");
+            if (sidenav.style.width === "250px") {
+                sidenav.style.width = "0";
+            } else {
+                sidenav.style.width = "250px";
+            }
+        }
+    </script>
+</body>
+</html>
