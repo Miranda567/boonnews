@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-adsense-account" content="ca-pub-3555053910214150">
-    <title>BoonNews</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naija News</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
-    <link rel='stylesheet'  href='lil.css' type='text/css' media='all' />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3555053910214150"
-     crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+<link href="shu.css" rel="stylesheet" type="text/css" media="screen">
+        <link rel="stylesheet" href="section.css">
 </head>
 <body>
 
 
-    <header class="header">
-          <button class="toggle-btn" onclick="toggleNavbar()">&#9778;</button>
-              <a href="#" class="company-name">Boon News</a>
-    <button class="search-btn" onclick="searchAction()">&#128189;</button>
-     
-    </header>
+    <!-- Header -->
+     <div class="header">
+        <span class="menu-toggle" onclick="toggleSidebar()">☰</span>
+        <a href="#" class="logo">Boon News</a>
+        <span class="search-toggle" onclick="toggleSearch()">🔍</span>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <span class="close-sidebar" onclick="toggleSidebar()">✖</span>
+        <h2>Categories</h2>
+        <ul>
+            <li><a href="#">Entertainment</a></li>
+            <li><a href="#">Technology</a></li>
+            <li><a href="#">Sports</a></li>
+            <li><a href="#">Business</a></li>
+            <li><a href="#">Health</a></li>
+        </ul>
+    </div>
+
+    <!-- Search Popup -->
+    <div class="search-popup" id="searchPopup">
+        <input type="text" placeholder="Search...">
+        <span class="close-search" onclick="toggleSearch()">✖</span>
+    </div>
 <div class="tab-container">
   <a href="#news" class="tab active">News</a>
   <a href="#sports" class="tab">Sports</a>
@@ -31,69 +48,18 @@
   <a href="#science" class="tab">Science</a>
   <!-- Add more tabs as needed -->
 </div>
+  <div class="container">
+        <div  id="articlesSection"></div>
+    <!-- Section Labels -->
 
 
-        <nav class="navbar" id="navbar">
-        <a href="#home"><i class="fas fa-home" style="color:#111;"></i> Home</a>
-        <hr>
-        <a href="#about">   <i class="fas fa-arrow-circle-down" style="color:#111;"></i> About</a>
-        <hr>
-        <a href="#services">   <i class="fas fa-cog" style="color:#111;"></i> Services</a>
-        <hr>
-        <a href="#contact">   <i class="fas fa-envelope" style="color:#111;"></i> Contact</a>
-    </nav>
-    
-    
-    <div id="articlesSection"></div>
-    
-
-        <div class="news-container" id="familyNewsSection">
-              <h2 class="news-item-h2">Latest News</h2>
-              <hr class="new4">
-            
-
-            </div>
-        </div>
-    </div>
-    
-        <div class="news-container" id="sportsNewsSection">
-              <h2 class="news-item-h2">Politics</h2>
-              <hr class="new4">
-
-        </div>
-    </div>
-        <div class="news-container">
-              <h2 class="news-item-h2">Education</h2>
-              <hr class="new4">
-
-
-        </div>
-    </div>
-        <div class="news-container">
-              <h2 class="news-item-h2">Business</h2>
-              <hr class="new4">
-
-        </div>
-    </div>
-        <div class="news-container">
-              <h2 class="news-item-h2">Entertainment</h2>
-              <hr class="new4">
-      
-        </div>
-    </div>
-        <div class="news-container">
-              <h2 class="news-item-h2">Sports</h2>
-              <hr class="new4">
-        <div class="news-item">
-          
-        </div>
-    </div>
-    
+    </ul>
+</div>
     
     <footer class="footer">
     <div class="footer-container">
         <div class="footer-section">
-            <h3>Company</h3>
+            <h3>BoonNews</h3>
             <ul>
                                     <li><a href="about-us.html">About Us</a></li>
                     <li><a href="advertisement.html">Advertise with Us</a></li>
@@ -119,19 +85,31 @@
         &copy; 2024 Boon News App. All rights reserved.
     </div>
 </footer>
-<script>
-        function toggleNavbar() {
-            var navbar = document.getElementById("navbar");
-            if (navbar.style.display === "flex") {
-                navbar.style.display = "none";
+    <!-- Additional Sections and News Items as needed -->
+
+  </div>
+      <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            if (sidebar.style.left === "0px") {
+                sidebar.style.left = "-250px";
             } else {
-                navbar.style.display = "flex";
+                sidebar.style.left = "0px";
+            }
+        }
+
+        function toggleSearch() {
+            const searchPopup = document.getElementById("searchPopup");
+            if (searchPopup.style.display === "flex") {
+                searchPopup.style.display = "none";
+            } else {
+                searchPopup.style.display = "flex";
             }
         }
     </script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    <script src="index.js"></script>
+    <script src="shubright.js"></script>
 </body>
 </html>
