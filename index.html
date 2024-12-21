@@ -3,114 +3,537 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name='impact-site-verification' value='e629e297-2450-42b8-ae8f-64b4ee8e0a8f'>
-  <title>Naija News</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
-<link href="shu.css" rel="stylesheet" type="text/css" media="screen">
-        <link rel="stylesheet" href="section.css">
-</head>
-<body>
+  <title>Boonplay Dashboard</title>                <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Mulish&display=swap"
+    rel="stylesheet">
+  
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Chakra petch", sans-serif;
+    }
 
+    body {
+      background-color: #f9f9f9;
+      color: rgb(65,88,208);
+    }
+    a {
+      text-decoration: none;
+    }
 
-    <!-- Header -->
-     <div class="header">
-        <span class="menu-toggle" onclick="toggleSidebar()">☰</span>
-        <a href="#" class="logo">Boon News</a>
-        <span class="search-toggle" onclick="toggleSearch()">🔍</span>
-    </div>
+    /* Header */
+    .header {
+      background-color: rgb(2,3,129);
+      color: rgba(255,105,0,1);
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <span class="close-sidebar" onclick="toggleSidebar()">✖</span>
-        <h2>Categories</h2>
-        <ul>
-            <li><a href="#">Entertainment</a></li>
-            <li><a href="#">Technology</a></li>
-            <li><a href="#">Sports</a></li>
-            <li><a href="#">Business</a></li>
-            <li><a href="#">Health</a></li>
-        </ul>
-    </div>
+    .header h1 {
+      font-size: 20px;
+      
+    }
 
-    <!-- Search Popup -->
-    <div class="search-popup" id="searchPopup">
-        <input type="text" placeholder="Search...">
-        <span class="close-search" onclick="toggleSearch()">✖</span>
-    </div>
-<div class="tab-container">
-  <a href="#news" class="tab active">News</a>
-  <a href="#sports" class="tab">Sports</a>
-  <a href="#business" class="tab">Business</a>
-  <a href="#entertainment" class="tab">Entertainment</a>
-  <a href="#technology" class="tab">Technology</a>
-  <a href="#health" class="tab">Health</a>
-  <a href="#science" class="tab">Science</a>
-  <!-- Add more tabs as needed -->
-</div>
-  <div class="container">
-        <div  id="articlesSection"></div>
-    <!-- Section Labels -->
+    .header-icons {
+      display: flex;
+      gap: 10px;
+    }
 
+    .header-icons span {
+      font-size: 18px;
+      cursor: pointer;
+    }
 
-    </ul>
-</div>
+    /* Main Content */
+    .container {
+      padding: 20px;
+    }
+
+    .price {
+      display: flex;
+         justify-content: space-between;
+            padding: 10px 20px;
+            align-items: center;
+      background-color: rgba(255,105,0,1);
+      border-radius: 5px;
+      padding: 10px 15px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .price img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .price span {
+      font-size: 16px;
+      font-weight: bold;
+      color: #001041;
+      margin-left: 10px;
+      background: #fff;
+      
+            border-radius: 5px;
+            padding: 8px 20px;
+            font-weight: bold;
+      
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    /* Store Cards */
+    .store-card {
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-radius: 1px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 15px;
+    }
+
+    .store-card img {
+      width: 60px;
+      height: 60px;
+      border-radius: 0%;
+      margin-right: 10px;
+    }
+
+    .store-details h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .store-details p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .store-details .tag {
+      background-color: rgba(255,105,0,1);
+      color: #fff;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 5px;
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: #fff;
+      box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
     
-    <footer class="footer">
-    <div class="footer-container">
-        <div class="footer-section">
-            <h3>BoonNews</h3>
-            <ul>
-                                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="advertisement.html">Advertise with Us</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            </ul>
-        </div>
+    }
 
-    </div>
+    .footer span {
+      font-size: 14px;
+      color: #2f2f2f;
+      cursor: pointer;
+    }
 
-    <div class="footer-logo">
+    .footer .active {
+      color: #fff;
+      background-color: #007bff;
+      padding: 8px 15px;
+    }
+        .banner {
+      position: relative;
+            padding: 10px 15px;
+    }
 
-    </div>
+    .banner img {
+      width: 100%;
+      border-radius: 10px;
+    }
 
-    <div class="footer-social">
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-        <a href="#">Instagram</a>
-        <a href="#">YouTube</a>
-    </div>
+    .banner-content {
+      position: relative;
+      top: 10px;
+      left: 20px;
+      background: #ff7300;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+      width: calc(100% - 40px);
+    }
 
-    <div class="footer-bottom">
-        &copy; 2024 Boon News App. All rights reserved.
-    </div>
-</footer>
-    <!-- Additional Sections and News Items as needed -->
+    .banner-content h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
 
-  </div>
-      <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById("sidebar");
-            if (sidebar.style.left === "0px") {
-                sidebar.style.left = "-250px";
-            } else {
-                sidebar.style.left = "0px";
-            }
+    .banner-content p {
+      font-size: 1rem;
+      margin: 10px 0;
+    }
+
+    .banner-content button {
+      background-color: #f54e42;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+      .custom-alert {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+    
+      
+      transform: translate(-50%, -50%);
+      
+            border: 3px solid #6f42c1;
+      background: linear-gradient(120deg, #d4a1ff, #f9f9f9);
+      color: black;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      z-index: 1000;
+    }
+      .modal {
+            display: none; /* Hidden by default */
+            position: fixed; 
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 30%;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: hsla(240, 18%, 75%, .8); /* Black with opacity */
+        }
+.modal h2 {
+  font-weight: bolder;
+  color: hsl(240, 8%, 15%);
+  font-size: 1.5rem;;
+}
+.modal p {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be adjusted */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.5s ease-out;
         }
 
-        function toggleSearch() {
-            const searchPopup = document.getElementById("searchPopup");
-            if (searchPopup.style.display === "flex") {
-                searchPopup.style.display = "none";
-            } else {
-                searchPopup.style.display = "flex";
+        /* Close button styles */
+        .close {
+            color: #222;
+            float: right;
+          font-size: 24px;
+            font-weight: bold;
+
+
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        button {
+          padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        
+
+        /* Button style */
+        .open-modal-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: hsl(240, 16%, 18%);
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .open-modal-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Animation for modal */
+        @keyframes slideIn {
+            from { top: -300px; opacity: 0; }
+            to { top: 15%; opacity: 1; }
+        }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <h1>BoonPlay Center</h1>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Price Section -->
+
+    <div class="price">
+      
+      <img src="https://img.icons8.com/ios-filled/50/000000/money.png" alt="Price">Available Balance
+      <span id="user-balance">0
+      </span>
+  
+      
+      
+    </div>
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" id="closeBtn">&times;</span>
+            <h2>Congratulations</h2>
+            <p>Claim your 20 BNT daily login rewards now!</p>
+            <button id="claim-bonus">Claim </button>
+        </div>
+    </div>
+    
+  <div class="custom-alert" id="custom-alert"></div>
+    <!-- Stores Section -->
+    <h2 style="color:#111;">Daily Task</h2>
+
+    <a href="#" id="openModalBtn"> <div class="store-card">
+      <img src="coin.jpg" alt="Avatar">
+      <div class="store-details">
+        <h3>Daily log in</h3>
+        <span class="tag">50 BNT</span>
+        <p>Complete and earn instantly  </p>
+      </div>
+    </div></a>
+    <h2 style="color:#111;">All Task</h2>
+   <a href="boon-spin.html"><div class="store-card">
+      <img src="coin.jpg" alt="Avatar">
+      <div class="store-details">
+        <h3>Boon Wheel Spin </h3>
+        <span class="tag">80 BNT</span>
+        <p>Spin and Earn </p>
+      </div>
+    </div></a>
+
+  <a href="boon-dice.html">   <div class="store-card">
+      <img src="boonroll.png" alt="Avatar">
+      <div class="store-details">
+        <h3>Boon Dice</h3>
+        <span class="tag">40 BNT</span>
+        <p>Roll Dice and Earn </p>
+      </div>
+    </div></a>
+ <a href="boon-puzzle.html"><div class="store-card">
+      <img src="puzzle.png" alt="Avatar">
+      <div class="store-details">
+        <h3>Boon Puzzle</h3>
+        <span class="tag">50 BNT</span>
+        <p>Solve Puzzle game and earn</p>
+      </div>
+    </div>
+    </a>
+  
+      <h2 style="color:#111;">Boon Games</h2>
+
+    <a href="#"> <div class="store-card">
+      <img src="coin.jpg" alt="Avatar">
+      <div class="store-details">
+        <h3>Read an article about Boonplay</h3>
+        <span class="tag">10 BNT</span>
+        <p>Read an article about us</p>
+      </div>
+    </div></a>
+
+   <a href="#"><div class="store-card">
+      <img src="coin.jpg" alt="Avatar">
+      <div class="store-details">
+        <h3>Watch video tutorial</h3>
+        <span class="tag">75 BNT</span>
+        <p>Learn and Earn</p>
+      </div>
+    </div></a>
+   <a href="#"><div class="store-card">
+      <img src="coin.jpg" alt="Avatar">
+      <div class="store-details">
+        <h3>Read Boon News</h3>
+        <span class="tag">30 BNT</span>
+        <p>Read news & Earn</p>
+      </div>
+    </div></a>
+   <a href="https://www.luno.com/invite/P94473" target="blank"><div class="store-card">
+      <img src="coin.jpg" alt="Avatar">
+      <div class="store-details">
+        <h3>Start crypto trading with Luno</h3>
+        <span class="tag">2500 BNT</span>
+        <p>
+      Earn up to 2500 BNT. Sign up using  link below</p>
+      </div>
+    </div></a>
+   <a href="#"><div class="store-card" style="margin-bottom:50px;">
+      <img src="coin.jpg" alt="Avatar">
+      <div class="store-details">
+        <h3>Invite your first friend </h3>
+        <span class="tag">1000 BNT</span>
+        <p> Refer a friend and Earn Up to 1000 BNT </p>
+      </div>
+    </div></a>
+    </div>
+    
+
+  <!-- Footer -->
+  <div class="footer">
+    <span class="active">🏠 Home</span>
+    <span>📍 Location</span>
+    <span>🔧 Discover</span>
+    <span>🙍 Me</span>
+    <span class="active">🏠 Home</span>
+  </div>
+      </script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js"></script>
+
+  <script>
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAtVvPjdsj84mWqaG4-7SyjbljCnslZ1SM",
+      authDomain: "hendaa-1.firebaseapp.com",
+      projectId: "hendaa-1",
+      storageBucket: "hendaa-1.appspot.com",
+      messagingSenderId: "831134776479",
+      appId: "1:831134776479:web:56cd7098fc69cd70a376aa"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+const customAlert = document.getElementById('custom-alert');
+
+    // Retrieve User Info and Balance
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        const userId = user.uid;
+
+
+        // Show user info on the page
+
+        // Check if balance exists in Firestore
+        const userDocRef = db.collection("users").doc(userId);
+        userDocRef.get().then((doc) => {
+          if (doc.exists) {
+            // Show existing balance
+            document.getElementById("user-balance").textContent = doc.data().balance || 0;
+          } else {
+            // Initialize new user balance as 0
+            userDocRef.set({ balance: 0, lastClaimed: null }, { merge: true });
+          }
+        }).catch((error) => {
+          console.error("Error fetching balance:", error);
+        });
+
+        // Claim Daily Bonus
+        document.getElementById("claim-bonus").addEventListener("click", () => {
+          userDocRef.get().then((doc) => {
+            if (doc.exists) {
+              const userData = doc.data();
+              const lastClaimed = userData.lastClaimed ? new Date(userData.lastClaimed) : null;
+              const now = new Date();
+
+              if (!lastClaimed || now - lastClaimed > 24 * 60 * 60 * 1000) {
+                // Update balance and set lastClaimed
+                const newBalance = (userData.balance || 0) + 20;
+                userDocRef.update({
+                  balance: newBalance,
+                  lastClaimed: now.toISOString()
+                }).then(() => {
+                  document.getElementById("user-balance").textContent = newBalance;
+                  showAlert("Reward Claimed Successfully !");
+                });
+              } else {
+                showAlert("Claimed Already. Come back tomorrow!");
+              }
+            }
+          }).catch((error) => {
+            console.error("Error claiming bonus:", error);
+          });
+        });
+      } else {
+        // Redirect to login if no user is logged in
+        showAlert("You are not logged in! Redirecting to login page...");
+        window.location.href = "login.html";
+      }
+    });
+    function showAlert(message) {
+      customAlert.textContent = message;
+      customAlert.style.display = "block";
+      setTimeout(() => (customAlert.style.display = "none"), 2000);
+    }
+    // Logout Functionality
+    document.getElementById("logout-button").addEventListener("click", () => {
+      auth.signOut()
+        .then(() => {
+          showAlert=("Logged out successfully!");
+          window.location.href = "login.html";
+        })
+        .catch((error) => {
+          console.error("Logout error:", error);
+        });
+    });
+  </script>
+   <script>
+        // Get the modal and buttons
+        var modal = document.getElementById("myModal");
+        var openModalBtn = document.getElementById("openModalBtn");
+        var closeBtn = document.getElementById("closeBtn");
+
+        // When the user clicks the button, open the modal
+        openModalBtn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks the close button, close the modal
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
             }
         }
     </script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    <script src="shubright.js"></script>
 </body>
 </html>
