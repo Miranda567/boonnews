@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roll Game</title>
+              <link rel="stylesheet" href="advanced.css">
+
+        <link rel="stylesheet" href="card-styles.css">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap"
+    rel="stylesheet">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+  
+      <div id="overlay"></div>
+    <div id="custom-alert">
+        <h2 id="alert-message"></h2>
+        <button class="btn" id="restart-btn">Restart</button>
+        <button class="btn" id="dashboard-btn">Return to Dashboard</button>
+    </div>
+    
+    <div class="game-container">
+        <h1>Dice Roll Game</h1>
+
+        <!-- Player Info Section -->
+        <div class="player-info">
+            <div>
+                <img src="user.jpg" alt="User Avatar" class="avatar">
+                <div class="balance-points">
+                    <p><strong>🪙:</strong> $<span id="user-balance">0</span></p></div>
+                                    <div class="balance-points">
+                    
+                    <p><strong>Score:</strong> <span id="user-score">0</span></p>
+                </div>
+            </div>
+            <div>
+                <span id="countdown">5s</span> 
+            </div>
+            <div>
+                <img src="computer.jpg" alt="Computer Avatar" class="avatar">
+                <div class="balance-points">
+                    <p><strong> Score:</strong> <span id="computer-score">0</span></p>
+                </div>
+                                                    <div class="balance-points">
+                    
+                    <p><strong>Score:</strong> <span id="user-score">0</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Entry Fee Section -->
+        <div class="entry-fee-section">
+            <label for="entry-fee">Enter Your Entry Fee: $</label>
+            <input type="number" id="entry-fee" min="1" step="1">
+            <button id="start-game-btn">Start Game</button>
+        </div>
+
+        <!-- Game Play Section -->
+        <div id="game-play" style="display:none;">
+            <h2>Game in Progress</h2>
+            <p><strong>Remaining Rolls:</strong> <span id="remaining-rolls">5</span></p>
+            <img id="dice-image" src="dice1.png" alt="Dice" class="dice-image">
+            <button id="roll-dice-btn" class="roll">Roll Dice</button>
+            <p id="roll-result">Result will show here...</p>
+        </div>
+
+        <!-- History Section -->
+        <div id="history-section" style="margin-top: 20px;">
+            <h3>Game History</h3>
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+        <p id="error-message" class="error-message"></p>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-firestore.js"></script>
+    <script>
+        // Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAtVvPjdsj84mWqaG4-7SyjbljCnslZ1SM",
+            authDomain: "hendaa-1.firebaseapp.com",
+            projectId: "hendaa-1",
+            storageBucket: "hendaa-1.appspot.com",
+            messagingSenderId: "831134776479",
+            appId: "1:831134776479:web:56cd7098fc69cd70a376aa"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var auth = firebase.auth();
+        var db = firebase.firestore();
+
+        // DOM elements
+        var startGameBtn = document.getElementById('start-game-btn');
+        var rollDiceBtn = document.getElementById('roll-dice-btn');
+        var entryFeeInput = document.getElementById('entry-fee');
+        var userScoreDisplay = document.getElementById('user-score');
+        var computerScoreDisplay = document.getElementById('computer-score');
+        var remainingRollsDisplay = document.getElementById('remaining-rolls');
+        var rollResultDisplay = document.getElementById('roll-result');
+        var gamePlaySection = document.getElementById('game-play');
+        var userBalanceDisplay = document.getElementById('user-balance');
+        var historyList = document.getElementById('history-list');
+                var pauseBtn = document.getElementById('pause-btn');
+        var playBtn = document.getElementById('play-btn');
+
+        var userScore = 0;
+        var computerScore = 0;
+        var remainingRolls = 5;
+        var entryFee = 0;
+        var userBalance = 0;
+        var autoRollInterval;
+        var countdownInterval;
+
+        startGameBtn.addEventListener('click', function() {
+            entryFee = parseFloat(entryFeeInput.value);
+            if (isNaN(entryFee) || entryFee <= 0) {
+                showCustomAlert("Please enter a valid entry fee.");
+                return;
+            }
+
+            auth.onAuthStateChanged(function(user) {
+                if (user) {
+                    db.collection('users').doc(user.uid).get().then(function(doc) {
+                        if (doc.exists) {
+                            userBalance = doc.data().balance;
+                            userBalanceDisplay.textContent = userBalance;
+
+                            if (userBalance < entryFee) {
+                                showCustomAlert("Insufficient balance. Please enter a lower amount.");
+                            } else {
+                                db.collection('users').doc(user.uid).update({
+                                    balance: firebase.firestore.FieldValue.increment(-entryFee)
+                                }).then(() => {
+                                    resetGame();
+                                    gamePlaySection.style.display = 'block';
+                                    startGameBtn.parentElement.style.display = 'none'; // Hide input box and button
+                                    remainingRollsDisplay.textContent = remainingRolls;
+                                    startGame();
+                                }).catch((error) => {
+                                    console.error("Error updating balance:", error);
+                                    showCustomAlert("Error updating balance. Please try again.");
+                                });
+                            }
+                        } else {
+                            showCustomAlert("User data not found.");
+                        }
+                    }).catch(function(error) {
+                        console.error("Error fetching user data:", error);
+                    });
+                } else {
+                    showCustomAlert("No user logged in.");
+                }
+            });
+        });
+
+        function startGame() {
+            rollDiceBtn.disabled = false;
+            rollDiceBtn.addEventListener('click', userRoll);
+            autoRollInterval = setInterval(autoRoll, 5000);
+            startCountdown();
+        }
+
+        function startCountdown() {
+            var countdown = 5;
+            document.getElementById('countdown').textContent = countdown;
+            clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                countdown--;
+                document.getElementById('countdown').textContent = countdown;
+                if (countdown === 0) {
+                    clearInterval(countdownInterval);
+                }
+            }, 1000);
+        }
+
+        function userRoll() {
+            rollDiceBtn.disabled = true;
+            clearInterval(autoRollInterval);
+            clearInterval(countdownInterval);
+            let rollValue = Math.floor(Math.random() * 6) + 1;
+            userScore += rollValue;
+            userScoreDisplay.textContent = userScore;
+            document.getElementById('dice-image').src = `dice${rollValue}.png`;
+            rollResultDisplay.textContent = "User rolled a " + rollValue;
+            setTimeout(computerRoll, 2000);
+        }
+
+        function computerRoll() {
+            let rollValue = Math.floor(Math.random() * 6) + 1;
+            computerScore += rollValue;
+            computerScoreDisplay.textContent = computerScore;
+            document.getElementById('dice-image').src = `dice${rollValue}.png`;
+            rollResultDisplay.textContent += " | Computer rolled a " + rollValue;
+
+            remainingRolls--;
+            remainingRollsDisplay.textContent = remainingRolls;
+
+            if (remainingRolls > 0) {
+                rollDiceBtn.disabled = false;
+                autoRollInterval = setInterval(autoRoll, 5000);
+                startCountdown();
+            } else {
+                endGame();
+            }
+        }
+
+        function autoRoll() {
+            if (!rollDiceBtn.disabled) {
+                userRoll();
+            }
+        }
+
+        function endGame() {
+            clearInterval(autoRollInterval);
+            clearInterval(countdownInterval);
+            gamePlaySection.style.display = 'none';
+
+            let prize = 2 * entryFee;
+            let resultText;
+
+            if (userScore > computerScore) {
+                resultText = "Congratulations! You win!";
+                updateUserBalance(prize);
+            } else if (userScore < computerScore) {
+                resultText = "Computer wins. Better luck next time!";
+            } else {
+                resultText = "It's a draw!";
+                updateUserBalance(entryFee); // Refund entry fee on a draw
+            }
+
+            addGameHistory(resultText);
+            showCustomAlert(resultText);
+        }
+
+        function updateUserBalance(amount) {
+            auth.onAuthStateChanged(function(user) {
+                if (user) {
+                    db.collection('users').doc(user.uid).update({
+                        balance: firebase.firestore.FieldValue.increment(amount)
+                    }).then(() => {
+                        userBalance += amount;
+                        userBalanceDisplay.textContent = userBalance;
+                    }).catch((error) => {
+                        console.error("Error updating balance:", error);
+                        showCustomAlert("Error updating balance after game. Please check your account.");
+                    });
+                }
+            });
+        }
+
+        function showCustomAlert(message) {
+            document.getElementById('alert-message').textContent = message;
+            document.getElementById('custom-alert').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        document.getElementById('restart-btn').addEventListener('click', function() {
+            resetGame();
+            document.getElementById('custom-alert').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+            gamePlaySection.style.display = 'block';
+            startGame();
+        });
+
+        document.getElementById('dashboard-btn').addEventListener('click', function() {
+            returnToDashboard();
+            document.getElementById('custom-alert').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        });
+
+        function returnToDashboard() {
+            resetGame();
+            gamePlaySection.style.display = 'none';
+            entryFeeInput.value = ''; // Reset entry fee input
+            startGameBtn.parentElement.style.display = 'block'; // Show input box and button again
+        }
+
+        function resetGame() {
+            userScore = 0;
+            computerScore = 0;
+            remainingRolls = 5;
+            userScoreDisplay.textContent = userScore;
+            computerScoreDisplay.textContent = computerScore;
+            remainingRollsDisplay.textContent = remainingRolls;
+            rollResultDisplay.textContent = '';
+            document.getElementById('dice-image').src = `dice1.png`;
+            rollDiceBtn.disabled = false;
+            clearInterval(autoRollInterval);
+            clearInterval(countdownInterval);
+            document.getElementById('countdown').textContent = '5';
+        }
+        function addGameHistory(resultText) {
+
+            let listItem = document.createElement('li');
+            listItem.textContent = `Game Result: ${resultText} (User Score: ${userScore} - Computer Score: ${computerScore})`;
+            historyList.appendChild(listItem);
+        }
+    </script>
+</body>
+</html>
