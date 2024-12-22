@@ -1,0 +1,436 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+
+        :root {
+
+    /*========== Colors ==========*/
+    --body-color: #020318;
+    --text-color-light: #FFF;
+
+    /*========== Font and typography ==========*/
+    --body-font: 'Poppins', sans-serif;
+    --biggest-font-size: 2rem;
+    --h1-font-size: 1.5rem;
+    --normal-font-size: .900rem;
+    --smaller-font-size: .75rem;
+
+    /*========== Box, Drop & Text Shadow ==========*/
+    --box-shadow-inset: inset 0 22px 56px -36px rgba(255, 255, 255, .5), 
+                        inset 0 4px 5px -4px rgba(255, 255, 255, 1), 
+                        inset 0 -31px 34px -32px rgba(96, 68, 144, .3), 
+                        inset 0 39px 50px -34px rgba(202, 172, 255, .3), 
+                        inset 0 2px 9px rgba(154, 146, 210, .3), 
+                        inset 0 1px 10px rgba(227, 222, 255, .2);
+
+    --drop-shadow: 0 0 8px rgba(161, 165, 247, .8);
+
+    --text-shadow: 0 0 8px rgba(161, 165, 247, .8);
+
+    --box-shadow-inset-button: inset 0 2px 7px -9px rgba(255, 255, 255, .5), 
+                               inset 0 1px 2px -1px rgba(255, 255, 255, 1), 
+                               inset 0 -20px 16px -32px rgba(96, 68, 144, .3), 
+                               inset 0 28px 25px -24px rgba(202, 172, 255, .3), 
+                               inset 0 1px 4px rgba(154, 146, 210, .3), 
+                               inset 0 1px 10px rgba(227, 222, 255, .2);
+
+    /*========== Box, Drop & Text Shadow Hover ==========*/
+    --box-shadow-inset-hover: inset 0 19px 28px -18px rgba(255, 255, 255, .5), 
+                              inset 0 4px 6px -3px rgba(255, 255, 255, 1), 
+                              inset 0 -51px 44px -42px rgba(96, 68, 144, .3), 
+                              inset 0 59px 60px -32px rgba(202, 172, 255, .3), 
+                              inset 0 4px 16px rgba(154, 146, 210, .3), 
+                              inset 0 2px 25px rgba(227, 222, 255, .23);
+
+    --drop-shadow-hover:  0 0 14px rgba(161, 165, 247, .8);
+
+    --text-shadow-hover: 0 0 14px rgba(161, 165, 247, .8);
+
+    --box-shadow-inset-button-hover: inset 0 4px 7px -4px rgba(255, 255, 255, .5), 
+                                     inset 0 1px 2px -1px rgba(255, 255, 255, 1), 
+                                     inset 0 -20px 16px -32px rgba(96, 68, 144, .3), 
+                                     inset 0 28px 25px -20px rgba(202, 172, 255, .3), 
+                                     inset 0 1px 4px rgba(154, 146, 210, .3), 
+                                     inset 0 1px 16px rgba(227, 222, 255, .2);
+                                     
+    /*========== Filter Blur ==========*/
+    --filter-blur: blur(100px);
+}
+@media screen and (min-width: 1024px) {
+
+    :root {
+        --normal-font-size: 0.5rem;
+    }
+}
+
+/*========== BASE ==========*/
+*, ::before, ::after {
+    box-sizing: border-box;
+}
+                * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+             font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+      background-image: url("back 4.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding-block: 100px var(--section-padding);
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+          
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .game-container {
+            max-width: 400px;
+            width: 100%;
+             background: rgba(255, 255, 255, 0.01);
+    color: var(--text-color-light);
+    box-shadow: var(--box-shadow-inset);
+    backdrop-filter: var(--filter-blur);
+ padding: 3.5rem 1.5rem 2rem;
+    border-radius: 2rem;
+    text-align: center;
+        }
+
+        h1 {
+            color: #FFF;
+            text-shadow: var(--text-shadow);  
+            margin-bottom: 20px;
+        }
+
+        /* Profile Info Section */
+        .player-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+                         background: rgba(255, 255, 255, 0.01);
+    color: var(--text-color-light);
+    box-shadow: var(--box-shadow-inset);
+    backdrop-filter: var(--filter-blur);
+            padding: 10px;
+            border-radius: 8px;
+
+        }
+
+        .player-info div {
+            text-align: center;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+             background: rgba(255, 255, 255, 0.01);
+    color: var(--text-color-light);
+    box-shadow: var(--box-shadow-inset);
+    backdrop-filter: var(--filter-blur);
+            padding: 5px;
+
+            border: 2px solid rgba(255, 255, 255, 0.01);
+        }
+
+        /* Balance and Points Styling */
+        .balance-points {
+            background: rgba(255, 255, 255, 0.01);
+    color: var(--text-color-light);
+    box-shadow: var(--box-shadow-inset);
+    backdrop-filter: var(--filter-blur);
+            border-radius: 10px;
+            padding: 5px 10px;
+            margin-top: 5px;
+
+            color: #fff;
+            text-shadow: var(--text-shadow);  
+            font-weight: bold;
+        }
+
+        /* Timer Styling */
+        #countdown {
+            font-size: 1.5rem;
+          
+             font-size: 25px;
+  font-weight: 600;
+  color: #c2e8ff;
+  text-shadow: 0 0 5px #1aa7ff;
+              
+                    background-image: url("background-roll.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #89d4ff52;
+            
+            border-radius: 8px;
+            padding: 8px 12px;
+            box-shadow: 0 5px 6px -5px #00c3ff;
+        }
+
+        /* Card style for input and button section */
+        .entry-fee-section {
+            background: rgba(255, 255, 255, 0.01);
+    color: var(--text-color-light);
+    box-shadow: var(--box-shadow-inset);
+    backdrop-filter: var(--filter-blur);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            
+        }
+
+        .entry-fee-section label {
+            color: #fff;
+                        text-shadow: var(--text-shadow);  
+        }
+
+        #entry-fee {
+            width: 60%;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            background: #ffffff;
+box-shadow: var(--box-shadow-inset);
+        }
+
+        /* Styled start button */
+        #start-game-btn {
+            padding: 8px 12px;
+            border: none;
+            box-shadow: var(--box-shadow-inset-button);
+    color: var(--text-color-light);
+    text-shadow: var(--text-shadow);
+    background: rgba(255, 255, 255, 0.01);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease;
+            
+        }
+
+        #start-game-btn:hover {
+            transform: scale(1.05);
+            box-shadow: var(--box-shadow-inset-button-hover);
+}
+      
+        /* Dice Image Styling */
+        .dice-image {
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow-inset);
+            border: 2px solid rgba(255, 255, 255, 0.01);
+            transition: transform 0.2s;
+        }
+
+        .dice-image:hover {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        /* Roll button styling */
+        .roll {
+            padding: 12px 20px;
+            font-size: 1rem;
+            box-shadow: var(--box-shadow-inset-button);
+    color: var(--text-color-light);
+    text-shadow: var(--text-shadow);
+            background: rgba(255, 255, 255, 0.01);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            
+            transition: background 0.2s ease;
+        }
+
+        .roll:hover {
+            background: linear-gradient(45deg, #d32f2f, #c62828);
+        }
+
+        /* Pause/Play button styling */
+        #pause-btn, #play-btn {
+            padding: 8px 16px;
+            border: none;
+                        background: rgba(255, 255, 255, 0.01);
+            color: var(--text-color-light);
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        #pause-btn:hover, #play-btn:hover {
+            background: #45a049;
+        }
+
+        /* Roll Result Styling */
+        #roll-result {
+            border: 2px solid rgba(255, 255, 255, 0.01);
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 8px;
+                        background: rgba(255, 255, 255, 0.01);
+box-shadow: var(--box-shadow-inset);
+            font-weight: bold;
+        }
+        #game-history {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#game-history h2 {
+    color: var(--text-color-light);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+#history-list {
+    list-style-type: none;
+}
+
+#history-list li {
+                background: rgba(255, 255, 255, 0.01);
+    border-left: 4px solid #007BFF;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+    font-size: 14px;
+}
+        
+        /* Styles for the custom alert */
+        #custom-alert {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            z-index: 1000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+        .btn {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: none;
+            background: #007BFF;
+color: var(--text-color-light);
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+                    .header {
+          display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      
+      color: white;
+      padding: 10px 20px;
+      
+            
+        }
+          .toggle-btn,
+    .search-btn {
+      font-size: 20px;
+      background: none;
+      border: none;
+      color: crimson;
+      cursor: pointer;
+    }
+
+    .company-name {
+      font-size: 18px;
+      color: crimson;
+      text-decoration: none;
+      text-align: center;
+    }
+    
+            .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+
+        .sidebar .close-sidebar {
+            font-size: 1.5em;
+            cursor: pointer;
+            color: white;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .sidebar h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: red;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 40px;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+
+        /* Search Popup */
+        .search-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .search-popup input {
+            padding: 10px;
+            width: 70%;
+            font-size: 1.2em;
+        }
+
+        .search-popup .close-search {
+            font-size: 1.5em;
+            cursor: pointer;
+            color: white;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
