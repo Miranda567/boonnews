@@ -272,8 +272,8 @@ border-radius: 8px;
 
             const resultDirection = randomDegree <= 180 ? 'up' : 'down';
             const message = guessedDirection === resultDirection
-              ? `You guessed correctly! You won ${entryFee * 2} points.`
-              : `Wrong guess. Better luck next time!`;
+              ? `Won! ${entryFee * 2} points.`
+              : `Lose!`;
 
             if (guessedDirection === resultDirection) balance += entryFee * 2;
 
