@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Details - Boonnews</title>
+    <!-- Correct Font Awesome CDN for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="fullboon.css">
+                        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+    <!-- Header -->
+         <div class="header">
+        <span class="menu-toggle" onclick="toggleSidebar()">☰</span>
+        <a href="#" class="logo">Boon News</a>
+        <span class="search-toggle" onclick="toggleSearch()">🔍</span>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <span class="close-sidebar" onclick="toggleSidebar()">✖</span>
+        <h2>Categories</h2>
+        <ul>
+            <li><a href="#">Entertainment</a></li>
+            <li><a href="#">Technology</a></li>
+            <li><a href="#">Sports</a></li>
+            <li><a href="#">Business</a></li>
+            <li><a href="#">Health</a></li>
+        </ul>
+    </div>
+
+    <!-- Search Popup -->
+    <div class="search-popup" id="searchPopup">
+        <input type="text" placeholder="Search...">
+        <span class="close-search" onclick="toggleSearch()">✖</span>
+    </div>
+    <!-- Main Content -->
+    <div class="content" id="article">
+      </div>
+        <!-- Category Badge -->
+
+
+    <!-- Up Next Section -->
+    <div class="up-next">UP NEXT</div>
+  
+
+    <!-- Don't Miss Section -->
+    <div class="dont-miss">DON'T MISS</div>
+
+
+    <!-- BellaNaija Information Section -->
+    <div class="bella-info">
+        <div class="site-name">Boonpleasure.com</div>
+        <div class="tagline">Living & Celebrating the African Dream!</div>
+        <div class="social-media-handles">
+            Follow us Twitter: <a href="">@BoonNews</a> 
+            Facebook: <a href="#">@BoonNews</a> 
+            Instagram: <a href="#">@BoonNews</a>
+        </div>
+    </div>
+
+    <!-- You May Like Section -->
+    <div class="you-may-like">
+
+
+        <!-- Recommended Articles -->
+
+    </div>
+    <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>BoonNews</h3>
+            <ul>
+                                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="advertisement.html">Advertise with Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer-logo">
+
+    </div>
+
+    <div class="footer-social">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+    </div>
+
+    <div class="footer-bottom">
+        &copy; 2024 Boon News App. All rights reserved.
+    </div>
+</footer>
+          <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            if (sidebar.style.left === "0px") {
+                sidebar.style.left = "-250px";
+            } else {
+                sidebar.style.left = "0px";
+            }
+        }
+
+        function toggleSearch() {
+            const searchPopup = document.getElementById("searchPopup");
+            if (searchPopup.style.display === "flex") {
+                searchPopup.style.display = "none";
+            } else {
+                searchPopup.style.display = "flex";
+            }
+        }
+    </script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+      <script src="fullboon.js"></script>
+</body>
+</html>
